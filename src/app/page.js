@@ -5,6 +5,7 @@ import {
   References,
   Typography,
   Hero,
+  Features,
   FeaturesV2,
 } from 'ecommerce-mxtech';
 import { useRouter } from 'next/navigation';
@@ -21,7 +22,7 @@ export default function Home() {
   return (
     <main
       style={{
-        backgroundColor: '#F5F4D3FF',
+        backgroundColor: '#F5FDE4FF',
       }}
     >
       <Navbar />
@@ -29,8 +30,8 @@ export default function Home() {
         <Hero
           variant='background-img'
           src={dataSite.image_hero}
-          colorText='white'
-          title={dataSite.subtitle}
+          colorText='#E7D677FF'
+          title={"Tools for your business's growth"}
           description={dataSite.description}
           srcSecondary={dataSite.image_hero2}
           withSubView
@@ -39,61 +40,56 @@ export default function Home() {
             color: 'black',
           }}
           withShadowText
-          contentThirdSection={() => {
-            return (
-              <div className='flex flex-col gap-10'>
-                <Typography.Title level={2} className='text-center'>
-                  {dataSite.title}
-                </Typography.Title>
-                <Typography.Text className='text-center'>
-                  {dataSite.description}
-                </Typography.Text>
-              </div>
-            );
-          }}
+          contentThirdSection={
+            <div
+              style={{ zIndex: 2 }}
+              className='flex flex-col px-48'
+              id='know-us'
+            >
+              <Typography.Title
+                level={3}
+                className='font-medium mb-10 text-center text-white'
+              >
+                Know Us
+              </Typography.Title>
+              <Missions
+                textColor='#fff'
+                data={dataSite.info}
+                gridColumns={1}
+                variant='text'
+              />
+            </div>
+          }
         />
       </div>
       <div className='container mx-auto flex flex-col gap-20 my-24'>
         <div className='flex flex-col' id='our-services'>
-          <FeaturesV2
-            features={dataSite.services.map((feature) => ({
-              title: feature.title,
-              description: feature.description,
-              src: feature.image,
-            }))}
-            styleTitle={{
-              color: primaryColor,
-            }}
-            styleDescription={{
-              color: '#000',
-            }}
-            onClickButton={() => {
-              router.push('/more-information');
-            }}
-            gridColumns={3}
-            backgroundColor={primaryColor}
-            borderRadius={10}
-            variant='text'
-            textColorDescription={primaryColor}
-            version='v1'
+          <Typography.Title level={3} className='font-medium mb-10 text-center'>
+            Our Services
+          </Typography.Title>
+          <Features
+            gridColumns={2}
+            variant='card'
+            features={dataSite.services}
           />
         </div>
-
         <div id='courses'>
           {dataSite.products.length > 1 && (
             <ProductSection
-              withCategoryFilter={true}
+              withCategoryFilter={false}
               title='All Courses'
-              gridColumns={2}
+              gridColumns={4}
               variant='grid'
-              productsPerPage={1}
               productItemVariant='vertical'
               onClickImage={(id) => {
                 router.push(`/product/${id}`);
               }}
-              productVersion='4'
+              productVersion='2'
               carouselOptions={{
-                backgroundColor: 'transparent',
+                arrowColor: 'black',
+                fade: true,
+                autoPlay: false,
+                direction: 'horizontal',
               }}
               backgroundItemColor='#FBFBFB'
               stylesItem={{
@@ -101,13 +97,6 @@ export default function Home() {
               }}
             />
           )}
-        </div>
-
-        <div className='flex flex-col' id='know-us'>
-          <Typography.Title level={3} className='font-medium mb-10 text-center'>
-            Know Us
-          </Typography.Title>
-          <Missions data={dataSite.info} gridColumns={1} variant='text' />
         </div>
 
         <div className='flex flex-col' id='references'>
@@ -121,11 +110,11 @@ export default function Home() {
               autoPlay: false,
               direction: 'horizontal',
             }}
-            variantItem='text'
-            variant='carousel'
-            backgroundColor='#E5D9BAFF'
+            variantItem='card'
+            variant='grid'
+            backgroundColor='#CFE5BAFF'
             references={dataSite.references}
-            gridColumns={2}
+            gridColumns={3}
             titleAlign='center'
           />
         </div>
