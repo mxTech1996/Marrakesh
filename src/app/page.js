@@ -31,7 +31,7 @@ export default function Home() {
           variant='background-img'
           src={dataSite.image_hero}
           colorText='#E7D677FF'
-          title={"Tools for your business's growth"}
+          title={dataSite.subtitle}
           description={dataSite.description}
           srcSecondary={dataSite.image_hero2}
           withSubView
